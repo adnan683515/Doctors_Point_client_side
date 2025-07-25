@@ -3,6 +3,14 @@ import Home from "../Pages/Home";
 import MainLayout from "../Layout/MainLayout";
 import Login from "../Pages/Auth/Login";
 import SignUp from "../Pages/Auth/SignUp";
+import AddDoctor from "../Pages/AddDoctor";
+import AboutUs from "../Pages/AboutUs";
+import HealthTips from "../Pages/HealthTips";
+import DepartMents from "../Pages/DepartMents";
+import FindDoctors from "../Pages/FindDoctors";
+import Contact from "../Components/Contact";
+import Profile from "../Pages/Profile";
+import ErrorPage from "../Pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -21,7 +29,31 @@ export const router = createBrowserRouter([
             {
                 path:"/signup",
                 Component : SignUp
+            },{
+                path:"/AddDoctors",
+                Component : AddDoctor
+            },{
+                path:"/aboutUs",
+                Component : AboutUs
+            },{
+                path:"/healthTips",
+                Component : HealthTips
+            },{
+                path:"/ourDepartMents",
+                Component : DepartMents
+            },{
+                path:"/findDoctors",
+                Component : FindDoctors
+            },{
+                path:"/contactSection",
+                Component : Contact
+            },{
+                path:'/profile',
+                Component : Profile
             }
         ]
+    },{
+        path:"/*",
+        Component : ErrorPage
     }
 ])

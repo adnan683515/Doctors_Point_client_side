@@ -8,7 +8,7 @@ const Hero = () => {
         <div className="w-[97%] mx-auto  py-10">
             <div className="mx-auto flex flex-col-reverse sm:flex-row items-center justify-between gap-10">
 
-                <div className="text-center sm:text-left sm:w-[50%] w-[90%] mx-auto sm:mx-0 space-y-2">
+                <div data-aos="zoom-in" className="text-center sm:text-left sm:w-[50%] w-[90%] mx-auto sm:mx-0 space-y-2">
                     <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
                         Find Trusted Doctors for Fast & Reliable Appointments
                     </h1>
@@ -34,7 +34,7 @@ const Hero = () => {
 
 
 
-                <div className="sm:w-[50%] relative bg-green-50 h-auto flex justify-end">
+                <div  data-aos="zoom-in" className="sm:w-[50%] relative bg-green-50 h-auto flex justify-end">
                     <div className="w-[20rem] z-20  h-[20rem] sm:w-[28rem] sm:h-[28rem] rounded-full border-[10px] border-[#007F5F] overflow-hidden shadow-lg">
                         <img
                             src="https://i.ibb.co/bj6T2h4D/pexels-pavel-danilyuk-7108251.jpg"
@@ -43,9 +43,9 @@ const Hero = () => {
                         />
 
                     </div>
-                    <img className="absolute -left-12 -top-10  sm:left-50 sm:top-0" src={plus} alt="" />
-                    <img className='absolute z-1 -left-17 bottom-14  sm:left-50 sm:bottom-30 ' src={beg} alt="" />
-                    <img src={doctorIcon} className='absolute z-70 top-0 sm:-right-5 -right-16 ' alt="" />
+                    <img data-aos="zoom-in" className="absolute -left-12  w-[50%] sm:w-[25%] -top-10  sm:left-50 sm:top-0" src={plus} alt="" />
+                    <img data-aos="zoom-in" className='absolute z-1 -left-8 w-[25%] sm:w-[15%]  bottom-2  sm:left-60 sm:bottom-15 ' src={beg} alt="" />
+                    <img data-aos="zoom-in"  src={doctorIcon} className='absolute  w-[25%] z-70 sm:w-[15%] top-0 sm:-right-5 -right-5 ' alt="" />
                 </div>
             </div>
         </div>

@@ -1,12 +1,43 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router';
+import AuthHook from '../../Hooks/AuthHook';
+import { BarLoader } from 'react-spinners';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-    return (
-        <div className="min-h-[80vh] flex items-center justify-center bg-gray-100 py-12 px-4">
-            <div className="sm:w-[60%] w-[95%] bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col sm:flex-row">
+    const [show, setShow] = useState(false)
+    const { handleLogin } = AuthHook()
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const navigate = useNavigate()
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
-                <div className="bg-[#007F5F] w-full sm:w-[45%] flex flex-col justify-center items-center p-6 text-white space-y-4">
+    const loginFuction = (data) => {
+        setLoading(true)
+        setError("")
+        const { email, password } = data
+        handleLogin(email, password)
+            .then(() => {
+                toast.success("Login Successfully!")
+                navigate('/')
+            })
+            .catch((err) => {
+                setError(err.message)
+            })
+            .finally(() => {
+                setLoading(false); 
+            });
+    }
+    if (error) {
+        toast.error(error)
+    }
+
+    return (
+        <div className="min-h-[80vh]  flex items-center justify-center bg-[#EFFAF7] py-12 px-4">
+            <div className="sm:w-[60%]  w-[95%] bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col sm:flex-row">
+
+                <div data-aos="fade-left" className="bg-[#007F5F] w-full sm:w-[45%] flex flex-col justify-center items-center p-6 text-white space-y-4">
                     <img
                         src="https://i.ibb.co/ZRbRs4qC/doctor-1-91.png"
                         alt="Doctor"
@@ -19,36 +50,48 @@ const Login = () => {
                 </div>
 
 
-                <div className="w-full sm:w-[55%] bg-white p-8">
+                <div data-aos="fade-right" className="w-full sm:w-[55%] bg-white p-8">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6">Login to Your Account</h2>
-                    <form className="space-y-2">
+                    <form onSubmit={handleSubmit(loginFuction)} className="space-y-2">
                         <div>
                             <label htmlFor="email" className="block text-gray-600 mb-1">Email</label>
                             <input
                                 type="email"
+                                {...register('email', { required: true })}
                                 id="email"
                                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#007F5F]"
                                 placeholder="Enter your email"
                             />
+                            {
+                                errors?.email && <p className='text-red-600'> Email Field Is required </p>
+                            }
                         </div>
                         <div>
                             <label htmlFor="password" className="block text-gray-600 mb-1">Password</label>
                             <input
-                                type="password"
+
+                                type={show ? 'text' : "password"}
+                                {...register('password', { required: true })}
                                 id="password"
                                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#007F5F]"
                                 placeholder="Enter your password"
                             />
+                            {
+                                errors?.password && <p className='text-red-500'>Password Field Is Requried</p>
+                            }
 
                         </div>
                         <div className='flex gap-2'>
-                            <div className='flex justify-center items-center'> <input type="checkbox" name="" id="" /></div> <span>show password</span>
+                            <div className='flex justify-center items-center'> <input onChange={() => setShow(!show)} type="checkbox" name="" id="" /></div> <span>show password</span>
                         </div>
                         <button
                             type="submit"
                             className="w-full bg-[#007F5F] text-white py-2 rounded-l-full rounded-r-full font-semibold hover:bg-[#00604b] transition"
                         >
-                            Login
+                            {loading ? <div className="w-full bg-[#007F5F] text-white py-4 rounded-full font-semibold hover:bg-[#00604b] transition flex justify-center items-center space-x-2">
+                                <span className="text-white text-sm">Login...</span>
+                                <BarLoader color="#ffffff" height={4} width={100} speedMultiplier={1.2} />
+                            </div> : 'Login'}
                         </button>
                     </form>
                     <div>
