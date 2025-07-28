@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 
 const ImageBBHooks = async (image) => {
+    console.log("image",image)
     const formdata = new FormData()
     formdata.append('image', image[0])
     try {

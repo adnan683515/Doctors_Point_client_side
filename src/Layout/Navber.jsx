@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router';
 import filUpplust from '../assets/fillPlus.png';
 import AuthHook from '../Hooks/AuthHook';
 import { PacmanLoader } from 'react-spinners';
+import toast from 'react-hot-toast';
 
 const Navber = () => {
     const { user, loading ,handleLogout } = AuthHook();
@@ -28,6 +29,7 @@ const Navber = () => {
         handleLogout()
         .then(()=>{
             setShowDropdown(false)
+            toast.error('Your Are Logged Out!')
             navigate('/login')
             
         })

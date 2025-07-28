@@ -8,8 +8,8 @@ const Hero = () => {
         <div className="w-[97%] mx-auto  py-10">
             <div className="mx-auto flex flex-col-reverse sm:flex-row items-center justify-between gap-10">
 
-                <div data-aos="zoom-in" className="text-center sm:text-left sm:w-[50%] w-[90%] mx-auto sm:mx-0 space-y-2">
-                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                <div data-aos="zoom-in" className="text-center sm:text-left sm:w-[50%] w-[99%] mx-auto sm:mx-0 ">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
                         Find Trusted Doctors for Fast & Reliable Appointments
                     </h1>
                     <p className="text-gray-700 text-base sm:text-lg">
@@ -21,7 +21,7 @@ const Hero = () => {
                     <p className="text-gray-700 text-base sm:text-lg">
                         Your health is our mission. Get care from experienced and certified doctors.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+                    <div className="flex flex-col mt-4 sm:flex-row gap-4 justify-center sm:justify-start">
                         <button className="bg-[#007F5F] text-white px-6 py-3 rounded-l-full rounded-r-full font-semibold hover:bg-[#00604b] transition">
                             Book Now
                         </button>

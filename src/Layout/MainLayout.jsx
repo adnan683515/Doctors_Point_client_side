@@ -1,16 +1,28 @@
 import React from 'react';
 import Navber from './Navber';
-import { Outlet } from 'react-router';
 import Footer from './Footer';
+import { Outlet, useNavigation } from 'react-router';
+import Loader from '../Share/Loader';
 
 const MainLayout = () => {
+    const navigation = useNavigation();
+
     return (
-        <div className='bg-[#EFFAF7]'>
-            <Navber></Navber>
-            <div className='sm:min-h-[calc(100vh-440px)] min-h-[50vh]'>
+        <div className="bg-[#EFFAF7]">
+            <Navber />
+
+
+            {navigation.state === 'loading' && (
+                <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-30 z-[9999]">
+                    <Loader></Loader>
+                </div>
+            )}
+
+            <div className="sm:min-h-[calc(100vh-440px)] min-h-[50vh]">
                 <Outlet />
             </div>
-            <Footer></Footer>
+
+            <Footer />
         </div>
     );
 };

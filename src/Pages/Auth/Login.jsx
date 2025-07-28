@@ -49,7 +49,6 @@ const Login = () => {
                     </p>
                 </div>
 
-
                 <div data-aos="fade-right" className="w-full sm:w-[55%] bg-white p-8">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-6">Login to Your Account</h2>
                     <form onSubmit={handleSubmit(loginFuction)} className="space-y-2">
