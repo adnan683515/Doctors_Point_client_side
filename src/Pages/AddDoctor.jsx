@@ -268,7 +268,7 @@ const AddDoctor = () => {
                                     <option value="Orthopedics">Orthopedics</option>
                                     <option value="Pediatrics">Pediatrics</option>
                                     <option value="Dermatology">Dermatology</option>
-                                    <option value="ENT">ENT (Ear, Nose, Throat)</option>
+                                    <option value="ENT">EENT (Eye, Ear, Nose, Throat)</option>
                                     <option value="Gynecology">Gynecology</option>
                                 </select>
                                 {errors.department && <p className="text-sm text-red-500">{errors.department.message}</p>}
