@@ -33,9 +33,9 @@ const Detailspage = () => {
                     <div className='flex sm:flex-row flex-col gap-5 w-full sm:w-2/3'>
 
 
-                        <div className='sm:w-[30%]  mx-auto sm:mx-0 relative rounded-md p-2 bg-white  flex flex-col items-center'>
+                        <div className='sm:w-[30%]  max-h-[40vh]  mx-auto sm:mx-0 relative rounded-md p-2 bg-white  flex flex-col items-center'>
                             <img className='w-full h-full object-cover rounded-md' src={doctorDetails?.image} alt={doctorDetails?.name} />
-                            <span className='mt-2 absolute bottom-0 left-1/3 bg-green-700 text-white text-xs px-5 py-1 rounded-full shadow-sm'>
+                            <span className='mt-2 absolute -bottom-2 left-1/3 bg-green-700 text-white text-xs px-5 py-1 rounded-full shadow-sm'>
                                 {doctorDetails?.visitDays?.includes("Tue") ? "চেম্বার খোলা" : "চেম্বার বন্ধ"}
                             </span>
                         </div>
