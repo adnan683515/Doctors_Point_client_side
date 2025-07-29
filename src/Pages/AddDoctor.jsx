@@ -51,7 +51,8 @@ const AddDoctor = () => {
                 degree: data?.degree,
                 bmdcNumber: data?.bmdcNumber,
                 patientService: 0,
-                medicalCollege: data?.medicalCollege
+                medicalCollege: data?.medicalCollege,
+                additionalInfo: data?.additionalInfo
 
             };
 

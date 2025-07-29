@@ -47,7 +47,7 @@ const DoctorDisplay = ({ doctor }) => {
                     </p>
 
                     <Link
-                        onClick={() => handleDetailShow(doctor)}
+                        to={`/doctorDetails/${doctor?._id}`}
                         className='text-sm cursor-pointer text-blue-500 hover:underline flex items-center gap-1'
                     >
                         View Details

@@ -1,14 +1,16 @@
 import React from 'react';
 import AuthHook from '../Hooks/AuthHook';
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 
 const PrivetRouter = ({children}) => {
 
     const {user,loading} = AuthHook()
+    const loc = useLocation()
+    console.log("location",loc)
     
     if(loading) return <h1>laodgin..........</h1>
 
-    if(!user) return <Navigate to={'/login'}></Navigate>
+    if(!user) return <Navigate state={`${loc?.pathname}`} to={'/login'}></Navigate>
 
     return children;
 };

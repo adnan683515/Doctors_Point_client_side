@@ -4,7 +4,9 @@ import { PropagateLoader } from 'react-spinners';
 
 
 const ProgressLoaindg = () => {
-    return <PropagateLoader color='#007F5F' />
+    return <div className='flex justify-center items-center'>
+        <PropagateLoader color='#007F5F' />
+    </div>
 };
 
 export default ProgressLoaindg;

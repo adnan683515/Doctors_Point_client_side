@@ -12,6 +12,7 @@ import Contact from "../Components/Contact";
 import Profile from "../Pages/Profile";
 import ErrorPage from "../Pages/ErrorPage";
 import PrivetRouter from "./PrivetRouter";
+import Detailspage from "../Pages/Detailspage";
 
 
 export const router = createBrowserRouter([
@@ -53,6 +54,11 @@ export const router = createBrowserRouter([
             }, {
                 path: '/profile',
                 Component: Profile
+            }, {
+                path: "/doctorDetails/:id",
+                element: <PrivetRouter>
+                    <Detailspage></Detailspage>
+                </PrivetRouter>
             }
         ]
     }, {

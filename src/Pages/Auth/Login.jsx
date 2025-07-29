@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import AuthHook from '../../Hooks/AuthHook';
 import { BarLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
@@ -12,6 +12,8 @@ const Login = () => {
     const navigate = useNavigate()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
+    const loc = useLocation()
+
 
     const loginFuction = (data) => {
         setLoading(true)
@@ -20,7 +22,7 @@ const Login = () => {
         handleLogin(email, password)
             .then(() => {
                 toast.success("Login Successfully!")
-                navigate('/')
+                navigate(`${loc?.state || '/'}`)
             })
             .catch((err) => {
                 setError(err.message)
