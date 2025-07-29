@@ -5,7 +5,7 @@ import DoctorDisplay from '../Components/DoctorDisplay/DoctorDisplay';
 import ProgressLoaindg from '../Share/ProgressLoaindg';
 import Slider from '@mui/material/Slider';
 import { FaSearch } from "react-icons/fa";
-import handsome from '../assets/handsomeDoctor.jpg'
+
 
 const allDept = [
     { value: "Cardiology", label: "Cardiology" },
@@ -38,8 +38,6 @@ const FindDoctors = () => {
             setAllDoctors(data?.data)
         })
     })
-
-
     const handleVisitamount = async (e) => {
         const result = await axiosHook.get(`/filterDoctor?fee=${e.value}`)
         setAllDoctors(result?.data)
@@ -69,7 +67,9 @@ const FindDoctors = () => {
         }
     }
 
-
+    if(isloading){
+        return <h1>loading............</h1>
+    }
 
     return (
         <div className='w-[100%] mx-auto'>
@@ -79,7 +79,7 @@ const FindDoctors = () => {
                         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-[#007F5F]">
                             Find the Right Doctor for You
                         </h1>
-                        <p className="text-lg md:text-xl mb-6 text-center">
+                        <p className="text-lg md:text-xl mb-6 text-center text-white">
                             Explore our verified list of doctors across various specialties. Use smart filters to match your needs and view detailed profiles — all in one place.
                         </p>
                         <div className='flex justify-center items-center'>

@@ -16,7 +16,7 @@ const Navber = () => {
         <>
             <li><NavLink to="/" className="text-gray-700 font-medium">Home</NavLink></li>
             <li><NavLink to="/findDoctors" className="text-gray-700 font-medium">Find Doctors</NavLink></li>
-            <li><NavLink to="/ourDepartMents" className="text-gray-700 font-medium">Departments</NavLink></li>
+            <li><NavLink to="/Medicine" className="text-gray-700 font-medium">Oder Medicine</NavLink></li>
             <li><NavLink to="/healthTips" className="text-gray-700 font-medium">Health Tips</NavLink></li>
             <li><NavLink to="/aboutUs" className="text-gray-700 font-medium">About Us</NavLink></li>
             <li><NavLink to="/contactSection" className="text-gray-700 font-medium">Contact</NavLink></li>

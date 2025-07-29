@@ -6,7 +6,7 @@ import SignUp from "../Pages/Auth/SignUp";
 import AddDoctor from "../Pages/AddDoctor";
 import AboutUs from "../Pages/AboutUs";
 import HealthTips from "../Pages/HealthTips";
-import DepartMents from "../Pages/DepartMents";
+import Medicine from "../Pages/Medicine";
 import FindDoctors from "../Pages/FindDoctors";
 import Contact from "../Components/Contact";
 import Profile from "../Pages/Profile";
@@ -43,8 +43,8 @@ export const router = createBrowserRouter([
                 path: "/healthTips",
                 Component: HealthTips
             }, {
-                path: "/ourDepartMents",
-                Component: DepartMents
+                path: "/Medicine",
+                Component: Medicine
             }, {
                 path: "/findDoctors",
                 Component: FindDoctors

@@ -52,7 +52,9 @@ const AddDoctor = () => {
                 bmdcNumber: data?.bmdcNumber,
                 patientService: 0,
                 medicalCollege: data?.medicalCollege,
-                additionalInfo: data?.additionalInfo
+                additionalInfo: data?.additionalInfo,
+                startTime: data?.startTime,
+                endTime : data?.endTime
 
             };
 

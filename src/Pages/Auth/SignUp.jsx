@@ -39,7 +39,7 @@ const SignUp = () => {
                     handleUpdate({ displayName: username, photoURL: imageUrl })
                         .then(async () => {
 
-                            const userInfo = { name: username, email: email, image: imageUrl, status: 'patient' }
+                            const userInfo = { name: username, email: email, image: imageUrl, status: 'patient' ,service: 0 }
 
                             const finalResult = await axoisHook.post('/usersDataSave', userInfo)
                             if (finalResult?.data?.insertedId) {

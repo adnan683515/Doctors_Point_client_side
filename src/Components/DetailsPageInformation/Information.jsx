@@ -6,7 +6,7 @@ import { FcGraduationCap } from "react-icons/fc";
 
 export const Information = ({ doctorDetails }) => (
     <Tabs className="border-none">
-        <TabList className="flex cursor-pointer gap-4 border-none">
+        <TabList className="flex  flex-wrap cursor-pointer gap-4 border-none">
             <Tab className="px-4 flex  gap-2 py-2 text-sm text-gray-600 hover:text-[#007F5F] bg-none  focus:outline-none"> <FcInfo size={40} />
                 <div className='flex justify-center items-center text-xl'>
                     <h1>Info</h1>
@@ -33,14 +33,62 @@ export const Information = ({ doctorDetails }) => (
         </TabList>
 
         <TabPanel className="border-none mt-4">
-            <div>
-                <h1 className='text-blue-500 text-2xl font-semibold'>About Info</h1>
-                <div className=' sm:w-[60%] mt-4'>
-                    <p>
-                        {doctorDetails?.additionalInfo}
-                    </p>
+            <div className=" rounded-xl p-6 ">
+
+                <h1 className="text-blue-600 text-2xl font-bold text-center sm:text-left mb-6">
+                    Doctor Overview & Weekly Schedule
+                </h1>
+
+
+                <div className="flex flex-col sm:flex-row justify-between gap-8">
+
+
+                    <div className="sm:w-[50%]">
+                        <h2 className="text-lg font-semibold text-gray-700 mb-2">About the Doctor</h2>
+                        <p className="text-gray-600 leading-relaxed">
+                            {doctorDetails?.additionalInfo || "No additional information provided."}
+                        </p>
+                    </div>
+
+
+                    <div className="sm:w-[50%]">
+                        <h2 className="text-lg font-bold text-blue-500 mb-1">Weekly Schedule</h2>
+
+                          <div>
+                            <span>Chamber Name: {doctorDetails?.chamber} </span>
+                        </div>
+                        <p className="text-sm text-gray-500 mb-3">
+                            These are the available days and chamber times for appointments.
+                        </p>
+
+
+                        <div className="flex flex-wrap gap-3 mb-4">
+                            {doctorDetails?.visitDays?.map((day, index) => (
+                                <button
+                                    key={index}
+                                    className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-4 py-1 rounded-full text-sm font-medium transition-all duration-300"
+                                >
+                                    {day}
+                                </button>
+                            ))}
+                        </div>
+
+                      
+
+                        <div className="space-y-1 text-sm text-gray-700">
+                            <p>
+                                <span className="font-semibold">Start Time:</span>{' '}
+                                {doctorDetails?.startTime || 'Not specified'}
+                            </p>
+                            <p>
+                                <span className="font-semibold">End Time:</span>{' '}
+                                {doctorDetails?.endTime || 'Not specified'}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </TabPanel>
         <TabPanel className="border-none mt-4">
             <h2>Any content 2</h2>
