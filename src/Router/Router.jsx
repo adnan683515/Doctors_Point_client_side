@@ -13,6 +13,7 @@ import Profile from "../Pages/Profile";
 import ErrorPage from "../Pages/ErrorPage";
 import PrivetRouter from "./PrivetRouter";
 import Detailspage from "../Pages/Detailspage";
+import MyAppointments from "../Pages/MyAppointments";
 
 
 export const router = createBrowserRouter([
@@ -58,6 +59,11 @@ export const router = createBrowserRouter([
                 path: "/doctorDetails/:id",
                 element: <PrivetRouter>
                     <Detailspage></Detailspage>
+                </PrivetRouter>
+            },{
+                path:"/myAppointments",
+                element : <PrivetRouter>
+                    <MyAppointments></MyAppointments>
                 </PrivetRouter>
             }
         ]

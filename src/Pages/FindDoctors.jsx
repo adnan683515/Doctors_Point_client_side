@@ -27,7 +27,7 @@ const FindDoctors = () => {
     const [degreeName, setDegreeName] = useState("")
 
 
-    const { isloading, refetch } = useQuery({
+    const { isLoading, refetch } = useQuery({
         queryKey: 'doctors',
         queryFn: (async () => {
             const data = await axiosHook.get('/allDoctorsGet')
@@ -67,8 +67,11 @@ const FindDoctors = () => {
         }
     }
 
-    if(isloading){
-        return <h1>loading............</h1>
+    if(isLoading){
+        console.log("loading is happned")
+        return <div className='min-h-screen flex justify-center items-center'>
+            <ProgressLoaindg></ProgressLoaindg>
+        </div>
     }
 
     return (
@@ -232,7 +235,7 @@ const FindDoctors = () => {
                     </div>
                     <div>
                         {
-                            isloading ? <ProgressLoaindg></ProgressLoaindg> : allDoctors?.map((item) => (
+                            isLoading ? <ProgressLoaindg></ProgressLoaindg> : allDoctors?.map((item) => (
                                 <DoctorDisplay doctor={item} key={item?._id}></DoctorDisplay>
                             ))
                         }

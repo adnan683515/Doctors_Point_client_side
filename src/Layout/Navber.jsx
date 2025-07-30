@@ -20,6 +20,7 @@ const Navber = () => {
             <li><NavLink to="/healthTips" className="text-gray-700 font-medium">Health Tips</NavLink></li>
             <li><NavLink to="/aboutUs" className="text-gray-700 font-medium">About Us</NavLink></li>
             <li><NavLink to="/contactSection" className="text-gray-700 font-medium">Contact</NavLink></li>
+            <li><NavLink to="/myAppointments" className="text-gray-700 font-medium">My Appointment</NavLink></li>
             <li><NavLink to="/AddDoctors" className="text-gray-700 font-medium">Add Doctor</NavLink></li>
         </>
     );

@@ -16,13 +16,18 @@ import {
     TelegramIcon,
 } from 'react-share';
 import VisaCardModal from '../Components/ViseCardModal/VisaCardModal';
+import AxiosHook from './../Hooks/AxiosHook';
+
 
 const Detailspage = () => {
 
     const { id } = useParams()
     let [isOpen, setIsOpen] = useState(false)
+    const axiosHook = AxiosHook()
     const [userInfo, roleLoading] = RoleHooks()
     const axiosSequere = useAxiosSecure()
+    const { user, loading } = AuthHook()
+
 
     const { data: doctorDetails = {}, isLoading } = useQuery({
         queryKey: ['details', id],
@@ -40,7 +45,7 @@ const Detailspage = () => {
     const today = new Date().getDay();
     const dayName = days[today];
 
-
+    const visiFee = parseInt(doctorDetails?.fee)
 
     function open() {
         setIsOpen(true)
@@ -61,7 +66,12 @@ const Detailspage = () => {
         }
     }
 
-    if (isLoading || roleLoading) {
+    const paymentApiFunction = async () => {
+        const { data } = await axiosHook.get(`/init/${doctorDetails?._id}/${user?.email}`);
+        window.location.href = data.url; // manually redirect here
+    };
+
+    if (isLoading || roleLoading || loading) {
         return <div className='min-h-screen my-30'>
             <ProgressLoaindg></ProgressLoaindg>
         </div>
@@ -140,14 +150,21 @@ const Detailspage = () => {
                                     </TelegramShareButton>
                                 </div>
                             </div>
-                            <div className="flex flex-col sm:flex-row justify-center gap-3 w-full">
+                            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full">
 
-                                <button  onClick={open} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
+                                <button onClick={open} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
                                     Take Appointment
                                 </button>
 
+
+
+
                                 <button onClick={getOffer} className="border border-[#007F5F] text-[#007F5F] text-sm px-4 py-2 rounded-full font-medium hover:scale-95 duration-700  cursor-pointer transition-all  w-full sm:w-auto">
                                     Get Discount Offer
+                                </button>
+
+                                <button onClick={paymentApiFunction} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
+                                    Payment
                                 </button>
 
                             </div>
@@ -164,7 +181,7 @@ const Detailspage = () => {
             </div>
             {
                 isOpen && <div data-aos="zoom-in">
-                    <VisaCardModal days={doctorDetails?.visitDays}  close={close} isOpen={isOpen}></VisaCardModal>
+                    <VisaCardModal visiFee={visiFee} doctorId={doctorDetails?._id} user={user} days={doctorDetails?.visitDays} close={close} isOpen={isOpen}></VisaCardModal>
                 </div>
             }
             {/*  */}

@@ -4,8 +4,24 @@ import { FcInfo } from "react-icons/fc";
 import { FcIdea } from "react-icons/fc";
 import { FcGraduationCap } from "react-icons/fc";
 
-export const Information = ({ doctorDetails }) => (
-    <Tabs className="border-none">
+
+const convertTo12Hour = (timeStr) => {
+    if (!timeStr) return 'Not specified';
+
+    const [hour, minute] = timeStr.split(':');
+    const hr = parseInt(hour);
+    const ampm = hr >= 12 ? 'PM' : 'AM';
+    const formattedHour = hr % 12 === 0 ? 12 : hr % 12;
+
+    return `${formattedHour}:${minute} ${ampm}`;
+};
+
+export const Information = ({ doctorDetails }) => {
+
+
+
+
+    return (<Tabs className="border-none">
         <TabList className="flex  flex-wrap cursor-pointer gap-4 border-none">
             <Tab className="px-4 flex  gap-2 py-2 text-sm text-gray-600 hover:text-[#007F5F] bg-none  focus:outline-none"> <FcInfo size={40} />
                 <div className='flex justify-center items-center text-xl'>
@@ -54,7 +70,7 @@ export const Information = ({ doctorDetails }) => (
                     <div className="sm:w-[50%]">
                         <h2 className="text-lg font-bold text-blue-500 mb-1">Weekly Schedule</h2>
 
-                          <div>
+                        <div>
                             <span>Chamber Name: {doctorDetails?.chamber} </span>
                         </div>
                         <p className="text-sm text-gray-500 mb-3">
@@ -73,16 +89,18 @@ export const Information = ({ doctorDetails }) => (
                             ))}
                         </div>
 
-                      
+
 
                         <div className="space-y-1 text-sm text-gray-700">
                             <p>
                                 <span className="font-semibold">Start Time:</span>{' '}
-                                {doctorDetails?.startTime || 'Not specified'}
+                                {
+                                    convertTo12Hour(doctorDetails?.startTime)
+                                }
                             </p>
                             <p>
                                 <span className="font-semibold">End Time:</span>{' '}
-                                {doctorDetails?.endTime || 'Not specified'}
+                                {convertTo12Hour(doctorDetails?.endTime)|| 'Not specified'}
                             </p>
                         </div>
                     </div>
@@ -116,5 +134,5 @@ export const Information = ({ doctorDetails }) => (
             </div>
 
         </TabPanel>
-    </Tabs>
-);
+    </Tabs>)
+};
