@@ -5,6 +5,7 @@ import { CardElement, Elements, useElements, useStripe } from '@stripe/react-str
 import useAxiosSecure from '../../Hooks/AxiosSequre';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
 const stripePromise = loadStripe(import.meta.env.VITE_pubicKey);
 
@@ -15,6 +16,7 @@ const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
     const elements = useElements();
     const [processing, setProcessing] = useState(false);
     const axiosSecure = useAxiosSecure();
+    const naivgate =useNavigate()
 
     const {
         register,
@@ -51,6 +53,7 @@ const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
                     console.log(appointmentAndpaymentInfo)
                     toast.success('Appointment confirmed successfully!');
                     close()
+                    naivgate('/myAppointments')
                 }
 
             }

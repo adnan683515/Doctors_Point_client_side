@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Online Doctor Consultation",
+        "avatar": "https://i.ibb.co/6Ybq6Pc/online-doctor.png",
+        "description": "Talk to certified doctors anytime, from anywhere. Our platform lets you video call with general physicians and specialists without long waits or hospital queues."
+    },
+    {
+        "title": "Medicine Home Delivery",
+        "avatar": "https://i.ibb.co/t32nGNg/medicine-delivery.png",
+        "description": "Easily order authentic medicines online through our verified pharmacy partners. Enjoy fast and safe delivery straight to your home, no need to step outside."
+    },
+    {
+        "title": "24/7 Emergency Support",
+        "avatar": "https://i.ibb.co/DKypLrY/emergency.png",
+        "description": "Medical emergency? We’ve got your back—24 hours a day, 7 days a week. Our team responds instantly to provide urgent support, ambulance calls, and guidance."
+    },
+    {
+        "title": "Specialist Doctor Booking",
+        "avatar": "https://i.ibb.co/SBY6vLX/specialist.png",
+        "description": "Find and book appointments with top specialists across all departments—eye, heart, skin, dental, ENT, gynecology, and more—at your convenience."
+    },
+    {
+        "title": "Diagnostic Test Booking",
+        "avatar": "https://i.ibb.co/Bfbkrmx/lab-test.png",
+        "description": "Book pathology and diagnostic tests with home sample collection. Lab reports will be delivered online, so no more waiting in queues or traveling unnecessarily."
+    },
+    {
+        "title": "Doctor Profiles & Ratings",
+        "avatar": "https://i.ibb.co/PZ7TxX2/doctor-profile.png",
+        "description": "Explore detailed doctor profiles including education, experience, availability, and patient reviews to help you pick the best doctor for your needs."
+    },
+    {
+        "title": "Online Prescription",
+        "avatar": "https://i.ibb.co/BnMd3kW/prescription.png",
+        "description": "Get your prescriptions securely saved in your account after each consultation. Download, print, or share them with pharmacies—anytime you need."
+    },
+    {
+        "title": "Medical Product Shop",
+        "avatar": "https://i.ibb.co/7jtjZfp/shop.png",
+        "description": "Browse our store for verified medical products—blood pressure monitors, thermometers, diabetic tools, masks, and wellness items—all at the best prices."
+    }
+]
