@@ -1,0 +1,66 @@
+[
+    {
+        "senderEmail": "golamfaruk680@gmail.com",
+        "receiverEmail": "rahim456@gmail.com",
+        "message": "Hey, ki obosta?",
+        "time": "10:30 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/1JyzpKq/user1.png"
+    },
+    {
+        "senderEmail": "rahim456@gmail.com",
+        "receiverEmail": "golamfaruk680@gmail.com",
+        "message": "Bhalo bhai, tumi?",
+        "time": "10:31 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/zQm0SP9/user2.png"
+    },
+    {
+        "senderEmail": "golamfaruk680@gmail.com",
+        "receiverEmail": "rahim456@gmail.com",
+        "message": "Frontend er kaj sesh hoise?",
+        "time": "10:32 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/1JyzpKq/user1.png"
+    },
+    {
+        "senderEmail": "rahim456@gmail.com",
+        "receiverEmail": "golamfaruk680@gmail.com",
+        "message": "Haan almost done!",
+        "time": "10:33 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/zQm0SP9/user2.png"
+    },
+    {
+        "senderEmail": "golamfaruk680@gmail.com",
+        "receiverEmail": "rahim456@gmail.com",
+        "message": "Great, push kore deo GitHub e.",
+        "time": "10:34 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/1JyzpKq/user1.png"
+    },
+    {
+        "senderEmail": "rahim456@gmail.com",
+        "receiverEmail": "golamfaruk680@gmail.com",
+        "message": "Okay, korchi.",
+        "time": "10:35 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/zQm0SP9/user2.png"
+    },
+    {
+        "senderEmail": "golamfaruk680@gmail.com",
+        "receiverEmail": "rahim456@gmail.com",
+        "message": "Call korbo 10 min por.",
+        "time": "10:36 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/1JyzpKq/user1.png"
+    },
+    {
+        "senderEmail": "rahim456@gmail.com",
+        "receiverEmail": "golamfaruk680@gmail.com",
+        "message": "Thik ase. Wait kortesi.",
+        "time": "10:37 AM",
+        "date": "2025-08-01",
+        "avatar": "https://i.ibb.co/zQm0SP9/user2.png"
+    }
+]
