@@ -4,10 +4,12 @@ import filUpplust from '../assets/fillPlus.png';
 import AuthHook from '../Hooks/AuthHook';
 import { PacmanLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
+import RoleHooks from '../Share/RoleHooks';
 
 const Navber = () => {
-    const { user, loading ,handleLogout } = AuthHook();
+    const { user, loading, handleLogout } = AuthHook();
     const [showDropdown, setShowDropdown] = useState(false);
+    const [userInfo, roleLoading] = RoleHooks()
     const navigate = useNavigate()
     const toggleDropdown = () => setShowDropdown(!showDropdown);
     const closeDropdown = () => setShowDropdown(false);
@@ -19,24 +21,30 @@ const Navber = () => {
             <li><NavLink to="/Medicine" className="text-gray-700 font-medium">Oder Medicine</NavLink></li>
             <li><NavLink to="/healthTips" className="text-gray-700 font-medium">Health Tips</NavLink></li>
             <li><NavLink to="/aboutUs" className="text-gray-700 font-medium">About Us</NavLink></li>
-            <li><NavLink to="/contactSection" className="text-gray-700 font-medium">Contact</NavLink></li>
-            <li><NavLink to="/myAppointments" className="text-gray-700 font-medium">My Appointment</NavLink></li>
-            <li><NavLink to="/AddDoctors" className="text-gray-700 font-medium">Add Doctor</NavLink></li>
+            {
+                user && <li><NavLink to="/contactSection" className="text-gray-700 font-medium">Contact</NavLink></li>
+            }
+            {
+                user && <li><NavLink to="/myAppointments" className="text-gray-700 font-medium">My Appointment</NavLink></li>
+            }
+            {
+                user && userInfo?.status === 'Admin' && <li><NavLink to="/AddDoctors" className="text-gray-700 font-medium">Add Doctor</NavLink></li>
+            }
         </>
     );
 
-    const handleLogoutFuncitn =()=>{
+    const handleLogoutFuncitn = () => {
 
         handleLogout()
-        .then(()=>{
-            setShowDropdown(false)
-            toast.error('Your Are Logged Out!')
-            navigate('/login')
-            
-        })
-        .catch((err)=>{
-            console.log(err.message)
-        })
+            .then(() => {
+                setShowDropdown(false)
+                toast.error('Your Are Logged Out!')
+                navigate('/login')
+
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
     }
 
     return (

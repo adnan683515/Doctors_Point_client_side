@@ -46,7 +46,8 @@ const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
                 const date = now.toLocaleDateString();
                 const time = now.toLocaleTimeString();
                 const email = user?.email
-                const appointmentAndpaymentInfo = { date, time, email, doctorId, ...data, tranjectionId: tranId, visiFee, see: false }
+                const appointmentAndpaymentInfo = { date, time, email, doctorId, ...data, tranjectionId: tranId, visiFee, status: 'pending' }
+
 
                 const appointMentResult = await axiosSecure.post('/appointments', appointmentAndpaymentInfo)
                 if (appointMentResult?.data?.insertedId) {

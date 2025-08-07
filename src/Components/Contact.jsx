@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AuthHook from '../Hooks/AuthHook';
 import ProgressLoaindg from './../Share/ProgressLoaindg';
 import useAxiosSecure from './../Hooks/AxiosSequre';
@@ -9,22 +9,34 @@ import Marquee from 'react-fast-marquee';
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 const Contact = () => {
+
+
+
+
     const { user, loading } = AuthHook();
     const axiosSecure = useAxiosSecure();
 
     const [message, setMessage] = useState('');
     const [showEmoji, setShowEmoji] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [allUsers, setAllusers] = useState([])
+    const [username, setUsername] = useState("")
 
 
-    const { data: allUsers = [], isLoading: usersLoading } = useQuery({
+
+
+
+
+
+    const { isLoading: usersLoading, refetch: userRefect } = useQuery({
         queryKey: ['allusers'],
         enabled: !loading && !!user,
         queryFn: async () => {
             const res = await axiosSecure.get(`/allUsers/${user?.email}`);
-            return res?.data;
+            setAllusers(res?.data)
         }
     });
+
 
 
     const { data: allMsg = [], isLoading: isMsgLoading, refetch } = useQuery({
@@ -35,6 +47,18 @@ const Contact = () => {
             return res?.data;
         }
     });
+
+    useEffect(() => {
+        if (!username) {
+            userRefect()
+            return
+        }
+        const searchBynameuser = async () => {
+            const result = await axiosSecure.get(`/searchUser/${username}`)
+            setAllusers(result?.data)
+        }
+        searchBynameuser()
+    }, [axiosSecure, username])
 
 
     const handleUserSelect = async (email) => {
@@ -85,6 +109,7 @@ const Contact = () => {
             <div className="w-full sm:w-[30%] p-4">
                 <input
                     type="text"
+                    onChange={(e) => setUsername(e.target.value)}
                     placeholder="Search user"
                     className="py-2 px-5 rounded-full w-full border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-[#007F5F]"
                 />
@@ -101,7 +126,10 @@ const Contact = () => {
                                 alt="user"
                                 className="w-10 h-10 rounded-full border-2 border-[#007F5F]"
                             />
-                            <h1 className="text-gray-800 font-medium">{userItem?.name}</h1>
+                            <h1 className="text-gray-800 font-medium">{userItem?.name}  <span className={` ${userItem?.status === 'Admin' ? 'bg-amber-300 px-4 py-1 text-black rounded-sm' : 'bg-blue-500 px-4 text-white rounded-sm py-1'} `}>
+
+                                {userItem?.status}
+                            </span> </h1>
                         </div>
                     ))}
                 </div>
@@ -120,7 +148,11 @@ const Contact = () => {
                                     alt="user"
                                     className="w-12 h-12 rounded-full border-2 border-[#007F5F] object-cover"
                                 />
-                                <p className="text-xs mt-1 text-gray-800 text-center">{userItem?.name}</p>
+                                <p className="text-xs mt-1 text-gray-800 text-center">{userItem?.name}   </p>
+                                <span className={` ${userItem?.status === 'Admin' ? 'bg-amber-300 px-2 py-1 text-black rounded-sm' : 'bg-blue-500 px-2 text-white rounded-sm py-1'} `}>
+
+                                    {userItem?.status}
+                                </span>
                             </div>
                         ))}
                     </Marquee>
@@ -139,8 +171,9 @@ const Contact = () => {
                                 alt="User"
                             />
                         </div>
-                        <div className="flex items-center gap-2 text-lg font-medium">
-                            <h1>{selectedUser?.name}</h1>
+                        <div className="flex items-center gap-2 text-lg text-black font-medium">
+                            <h1>{selectedUser?.name}  <span className={`${selectedUser?.status === 'Admin' ? 'bg-amber-300 px-2 py-1 text-black rounded-sm' : 'bg-blue-500 px-2 text-white rounded-sm py-1'}`}>
+                                {selectedUser?.status} </span>  </h1>
 
 
                         </div>
@@ -163,7 +196,7 @@ const Contact = () => {
                                     <div key={idx} className="flex justify-end items-start mb-3">
                                         <div className="w-[80%] flex flex-col items-end">
                                             <div className="flex items-center gap-2 mb-1">
-                                                <span className="text-sm font-medium text-white">You</span>
+                                                <span className="text-sm font-medium text-black">You</span>
                                                 <img
                                                     src={msg?.senderPhoto}
                                                     alt="avatar"
@@ -207,7 +240,7 @@ const Contact = () => {
                                                     alt="avatar"
                                                     className="w-8 h-8 rounded-full object-cover"
                                                 />
-                                                <span className="text-sm font-medium text-white">{msg?.senderName}</span>
+                                                <span className="text-sm font-medium text-black">{msg?.senderName}</span>
                                             </div>
                                             <div className="p-3 rounded-xl text-white shadow-md bg-[#1E293B] max-w-[90%]">
                                                 <p className="text-sm break-words">{msg.message}</p>
@@ -266,6 +299,8 @@ const Contact = () => {
                                 <EmojiPicker onEmojiClick={handleEmojiClick} />
                             </div>
                         )}
+
+
                     </div>
                 )}
             </div>

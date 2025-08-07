@@ -67,7 +67,7 @@ const FindDoctors = () => {
         }
     }
 
-    if(isLoading){
+    if (isLoading) {
         console.log("loading is happned")
         return <div className='min-h-screen flex justify-center items-center'>
             <ProgressLoaindg></ProgressLoaindg>
@@ -79,14 +79,14 @@ const FindDoctors = () => {
             <div className="bg-[url('https://i.ibb.co/r2H5JYng/online-marketing-h-Igeo-Qj-S-i-E-unsplash.jpg')] bg-no-repeat bg-cover bg-center h-[50vh] w-full flex items-center">
                 <div className='flex justify-center items-center  mx-auto'>
                     <div className="text-black px-6 max-w-xl ">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-[#007F5F]">
+                        <h1 className="text-2xl md:text-5xl font-bold mb-4 text-center text-[#007F5F]">
                             Find the Right Doctor for You
                         </h1>
-                        <p className="text-lg md:text-xl mb-6 text-center text-white">
+                        <p className="text-lg md:text-xl sm:mb-6 text-center text-white">
                             Explore our verified list of doctors across various specialties. Use smart filters to match your needs and view detailed profiles — all in one place.
                         </p>
                         <div className='flex justify-center items-center'>
-                            <button className="bg-[#007F5F] text-white px-6 py-3 rounded-l-full rounded-r-full hover:bg-[#00694f] transition-all duration-300">
+                            <button className="bg-[#007F5F] text-white px-4 sm:px-6 sm:py-3 py-1 rounded-l-full rounded-r-full hover:bg-[#00694f] transition-all duration-300">
                                 Search Doctors
                             </button>
                         </div>
@@ -143,7 +143,7 @@ const FindDoctors = () => {
                                         name="department"
                                         value={dept.value}
                                         onChange={() => {
-                                            // setDeptValue(dept?.value)
+
                                             getDepthandle(dept?.value)
                                         }}
                                         className="accent-[#007F5F] cursor-pointer w-4 h-4"
@@ -179,8 +179,51 @@ const FindDoctors = () => {
 
                     <div className="relative block sm:hidden pt-3">
                         <input type="checkbox" id="my-drawer-4" className="peer hidden" />
-                        <div className='flex justify-end'>
+                        <div className='flex gap-3 justify-end'>
+
+                            <button onClick={() => refetch()} className='px-4 py-1 bg-[#007F5F] rounded-l-full hover:scale-95 duration-700 cursor-pointer  rounded-r-full text-white'>Reset</button>
+
+
                             <label htmlFor="my-drawer-4" className=" cursor-pointer bg-[#007F5F] rounded-l-full rounded-r-full px-4 py-1 text-white ">Filter</label>
+
+
+                        </div>
+
+                        <div className='mb-5'>
+
+
+
+                            <div className='flex justify-between'>
+                                <h1>Consultation Fee</h1>
+
+                            </div>
+                            <Slider
+                                min={100}
+                                max={maxFee ? maxFee : '00'}
+                                step={50}
+                                onChange={(e) => handleVisitamount(e.target)}
+                                defaultValue={300}
+                                valueLabelDisplay="auto"
+                                sx={{
+                                    color: '#007F5F',
+                                    '& .MuiSlider-thumb': {
+                                        borderRadius: '4px',
+                                    },
+                                    '& .MuiSlider-track': {
+                                        backgroundColor: '#007F5F',
+                                    },
+                                    '& .MuiSlider-rail': {
+                                        backgroundColor: '#e0e0e0',
+                                    },
+                                    '& .MuiSlider-valueLabel': {
+                                        backgroundColor: '#007F5F',
+                                    },
+                                }}
+                            />
+                            <div className='flex justify-between'>
+                                <p className='text-blue-400'>Min: 100</p>
+                                <p className='text-blue-500'>Max : {maxFee && maxFee} </p>
+                            </div>
                         </div>
 
                         <div className="fixed top-0 left-0 w-full bg-base-200 z-50 shadow-lg transform -translate-y-full peer-checked:translate-y-0 transition-transform duration-300">
@@ -190,10 +233,10 @@ const FindDoctors = () => {
                             <div className="p-4">
 
 
-                                <h1 className="text-lg sm:text-xl font-semibold text-[#007F5F] mb-3 border-b pb-1 w-fit">
+                                <h1 className="text-lg sm:text-xl font-semibold text-[#007F5F] mb-3   w-full pb-1  text-center">
                                     Filter by Department
                                 </h1>
-                                <div className="grid grid-cols-3 gap-2">
+                                <div className="grid grid-cols-2 gap-2">
                                     {allDept?.map((dept) => (
                                         <label key={dept.value} style={{ display: "block", margin: "4px 0" }}>
                                             <input
@@ -207,7 +250,20 @@ const FindDoctors = () => {
                                     ))}
                                 </div>
 
+                                <div className="flex flex-col my-4 gap-1 w-full max-w-md mx-auto">
 
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            id="degree"
+                                            onChange={(e) => setDegreeName(e.target.value)}
+                                            name="degree"
+                                            placeholder="Enter degree name..."
+                                            className="w-full pl-10 pr-4 py-2 border border-[#007F5F] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#007F5F] shadow-sm"
+                                        />
+                                        <FaSearch onClick={handleDegreee} className="absolute right-3 cursor-pointer bg-green-100 top-1/2 transform -translate-y-1/2 text-gray-500" />
+                                    </div>
+                                </div>
 
                                 <div className='mt-10'>
                                     <label htmlFor="my-drawer-4" className="bg-rose-600 mt-5 px-4 py-1 text-white rounded-sm">Close</label>
@@ -232,6 +288,8 @@ const FindDoctors = () => {
                                 Search
                             </button>
                         </div>
+
+
                     </div>
                     <div>
                         {

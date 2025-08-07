@@ -2,6 +2,13 @@ import React from 'react';
 import Hero from '../Components/Hero/Hero';
 import OurServices from '../Components/Ourservices/OurServices';
 import About from '../Components/About/About';
+import AppointMentPDF from './AppointMentPDF';
+
+
+
+
+
+
 
 const Home = () => {
     return (
@@ -13,6 +20,11 @@ const Home = () => {
             <div className='py-10'>
                 <About></About>
             </div>
+
+
+
+            <AppointMentPDF></AppointMentPDF>
+
         </div>
     );
 };

@@ -14,6 +14,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import PrivetRouter from "./PrivetRouter";
 import Detailspage from "../Pages/Detailspage";
 import MyAppointments from "../Pages/MyAppointments";
+import Deshboard from "../Layout/Deshboard/Deshboard";
 
 
 export const router = createBrowserRouter([
@@ -51,7 +52,9 @@ export const router = createBrowserRouter([
                 Component: FindDoctors
             }, {
                 path: "/contactSection",
-                Component: Contact
+                element: <PrivetRouter>
+                    <Contact></Contact>
+                </PrivetRouter>
             }, {
                 path: '/profile',
                 Component: Profile
@@ -60,9 +63,9 @@ export const router = createBrowserRouter([
                 element: <PrivetRouter>
                     <Detailspage></Detailspage>
                 </PrivetRouter>
-            },{
-                path:"/myAppointments",
-                element : <PrivetRouter>
+            }, {
+                path: "/myAppointments",
+                element: <PrivetRouter>
                     <MyAppointments></MyAppointments>
                 </PrivetRouter>
             }
@@ -70,5 +73,10 @@ export const router = createBrowserRouter([
     }, {
         path: "/*",
         Component: ErrorPage
+    },{
+        path: "/dashboard",
+        element : <PrivetRouter>
+            <Deshboard></Deshboard>
+        </PrivetRouter>
     }
 ])

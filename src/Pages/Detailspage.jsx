@@ -151,21 +151,22 @@ const Detailspage = () => {
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 w-full">
-
                                 <button onClick={open} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
                                     Take Appointment
                                 </button>
-
-
 
 
                                 <button onClick={getOffer} className="border border-[#007F5F] text-[#007F5F] text-sm px-4 py-2 rounded-full font-medium hover:scale-95 duration-700  cursor-pointer transition-all  w-full sm:w-auto">
                                     Get Discount Offer
                                 </button>
 
-                                <button onClick={paymentApiFunction} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
-                                    Payment
-                                </button>
+
+                                {/* {
+                                    doctorDetails?.visitDays.includes(dayName) && userInfo?.status === 'patient' && <button onClick={paymentApiFunction} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
+                                        Payment
+                                    </button>
+                                } */}
+
 
                             </div>
 
@@ -184,7 +185,7 @@ const Detailspage = () => {
                     <VisaCardModal visiFee={visiFee} doctorId={doctorDetails?._id} user={user} days={doctorDetails?.visitDays} close={close} isOpen={isOpen}></VisaCardModal>
                 </div>
             }
-            {/*  */}
+
         </div>
 
     );

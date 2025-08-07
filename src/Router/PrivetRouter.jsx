@@ -6,7 +6,7 @@ const PrivetRouter = ({children}) => {
 
     const {user,loading} = AuthHook()
     const loc = useLocation()
-    console.log("location",loc)
+
     
     if(loading) return <h1>laodgin..........</h1>
 
