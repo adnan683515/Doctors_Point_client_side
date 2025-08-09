@@ -24,7 +24,6 @@ function AppointmentRow({ row }) {
     const [open, setOpen] = React.useState(false);
     const axiosUrl = useAxiosSecure()
 
-
     const { data: details = {} } = useQuery({
         queryKey: ['info', row?.email],
         enabled: !!row?.email,
@@ -41,11 +40,6 @@ function AppointmentRow({ row }) {
             return result?.data
         })
     })
-
-
-    console.log(Doctordetails)
-
-
 
 
     return (
@@ -66,6 +60,7 @@ function AppointmentRow({ row }) {
                 <TableCell>{row?.time}</TableCell>
                 <TableCell>{row?.phone}</TableCell>
                 <TableCell>{row?.visiFee} ৳</TableCell>
+                <TableCell>{row?.status} </TableCell>
             </TableRow>
 
             <TableRow>
@@ -135,6 +130,7 @@ AppointmentRow.propTypes = {
         time: PropTypes.string,
         phone: PropTypes.string,
         visiFee: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        status : PropTypes.string
     }).isRequired,
 };
 
@@ -160,6 +156,7 @@ export default function MyAppointmentTable({ data }) {
                         <TableCell><strong>Time</strong></TableCell>
                         <TableCell><strong>Phone</strong></TableCell>
                         <TableCell><strong>Visit Fee</strong></TableCell>
+                        <TableCell><strong>Status</strong></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

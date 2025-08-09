@@ -13,26 +13,19 @@ import {
 } from 'recharts';
 
 const COLORS = {
-    Pending: '#FFA500',      // Orange
-    Confirmed: '#00C49F',    // Teal Green
-    Ongoing: '#0088FE',      // Blue
-    Completed: '#4CAF50',    // Green
-    Cancelled: '#FF4444'     // Red
+    Pending: '#FFA500',     
+    Confirmed: '#00C49F',    
+    Ongoing: '#0088FE',      
+    Completed: '#4CAF50',    
+    Cancelled: '#FF4444'     
 };
 
-const data = [
-    { status: 'Pending', count: 18 },
-    { status: 'Confirmed', count: 30 },
-    { status: 'Ongoing', count: 12 },
-    { status: 'Completed', count: 20 },
-    { status: 'Cancelled', count: 5 }
-];
 
-export default function StatusWiseBubbleChart() {
-    const chartData = data.map(item => ({
+export default function StatusWiseBubbleChart({totalAppointmentStatus}) {
+    const chartData = totalAppointmentStatus?.map(item => ({
         x: item.status,
         y: item.count,
-        z: item.count * 15, // Bubble size
+        z: item.count * 15, 
         status: item.status
     }));
 

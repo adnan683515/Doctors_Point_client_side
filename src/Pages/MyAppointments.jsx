@@ -40,6 +40,7 @@ const MyAppointments = () => {
 
     const { user, loading } = AuthHook()
     const axiosSequre = useAxiosSecure()
+    const [totalAppointmentStatus, setTotalAppStatus] = useState([])
     const [activeValue, setActiveValue] = useState(null);
 
 
@@ -48,7 +49,8 @@ const MyAppointments = () => {
         enabled: !!user && !loading,
         queryFn: (async () => {
             const result = await axiosSequre.get(`/myappointments/${user?.email}`)
-            return result?.data
+            setTotalAppStatus(result?.data?.counts)
+            return result?.data?.result
         })
     })
 
@@ -117,7 +119,7 @@ const MyAppointments = () => {
                         Appointment Status
                     </h2>
                     <div className=''>
-                        <BubbleChart />
+                        <BubbleChart totalAppointmentStatus={totalAppointmentStatus} />
                     </div>
                 </div>
             </div>
