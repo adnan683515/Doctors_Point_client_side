@@ -13,10 +13,40 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import useAxiosSecure from '../../../Hooks/AxiosSequre';
+import { useQuery } from '@tanstack/react-query';
+import AuthHook from '../../../Hooks/AuthHook';
+import { Grid } from 'lucide-react';
+import { Avatar, Button } from '@chatui/core';
 
-// Row Component
+
 function AppointmentRow({ row }) {
     const [open, setOpen] = React.useState(false);
+    const axiosUrl = useAxiosSecure()
+
+
+    const { data: details = {} } = useQuery({
+        queryKey: ['info', row?.email],
+        enabled: !!row?.email,
+        queryFn: (async () => {
+            const result = await axiosUrl.get(`/singleUser/${row?.email}`)
+            return result?.data
+        })
+    })
+    const { data: Doctordetails = {} } = useQuery({
+        queryKey: ['infoDoctor', row?.doctorId],
+        enabled: !!row?.doctorId,
+        queryFn: (async () => {
+            const result = await axiosUrl.get(`/singleDoctor/${row?.doctorId}`)
+            return result?.data
+        })
+    })
+
+
+    console.log(Doctordetails)
+
+
+
 
     return (
         <>
@@ -30,7 +60,7 @@ function AppointmentRow({ row }) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>{row?.email}</TableCell>
+                <TableCell>{details?.name}</TableCell>
                 <TableCell>{row?.date}</TableCell>
                 <TableCell>{row?.day}</TableCell>
                 <TableCell>{row?.time}</TableCell>
@@ -41,12 +71,55 @@ function AppointmentRow({ row }) {
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box margin={1}>
-                            <Typography variant="body2" gutterBottom component="div">
-                                {/* Details here */}
-                                বিস্তারিত তথ্য শীঘ্রই আসছে...
+                        <Box sx={{ margin: 1 }}>
+                            <Typography variant="h6" gutterBottom component="div">
+                                History
                             </Typography>
+                            <Table size="small" aria-label="purchases">
+
+
+                            </Table>
+
+
+                            <Box
+                                sx={{
+                                    mt: 3,
+                                    p: 2,
+                                    border: '1px solid #ddd',
+                                    borderRadius: 2,
+                                    display: 'flex',
+                                    flexDirection: { xs: 'column', sm: 'row' },
+                                    alignItems: { xs: 'flex-start', sm: 'center' },
+                                    gap: 2,
+                                }}
+                            >
+
+                                <Box sx={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+
+                                    <Typography variant="body2" sx={{ minWidth: '45%' }}>
+                                        <strong>Name:</strong> <span style={{ textDecoration: 'underline' ,cursor : 'pointer' }}>{Doctordetails.name}</span>
+                                    </Typography>
+
+                                    <Typography variant="body2" sx={{ minWidth: '45%' }}>
+                                        <strong>Department:</strong> {Doctordetails.department}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ minWidth: '45%' }}>
+                                        <strong>Designation:</strong> {Doctordetails.designation}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ minWidth: '45%' }}>
+                                        <strong>Experience:</strong> {Doctordetails.experience} years
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ minWidth: '45%' }}>
+                                        <strong>Phone:</strong> {Doctordetails.phone}
+                                    </Typography>
+                                </Box>
+
+
+                            </Box>
                         </Box>
+
+
+
                     </Collapse>
                 </TableCell>
             </TableRow>
@@ -65,7 +138,7 @@ AppointmentRow.propTypes = {
     }).isRequired,
 };
 
-// Table Component
+
 export default function MyAppointmentTable({ data }) {
     return (
         <TableContainer
