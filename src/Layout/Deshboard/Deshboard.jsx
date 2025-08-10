@@ -116,7 +116,7 @@ const Deshboard = () => {
             </div>
 
 
-            <div className=" w-[100%]   flex  flex-col  ">
+            <div className=" w-[100%]    flex  flex-col  ">
 
                 <div className="bg-white shadow-md px-4 py-3 flex justify-between items-center md:hidden">
                     <h1 className="text-xl font-semibold">Dashboard</h1>
@@ -206,16 +206,20 @@ const Deshboard = () => {
                     </div>
                 </div>
             </div>
+
+
             <div className='sm:w-[25%] w-full mt-6 mr-2 bg-white  rounded-lg px-3 py-1'>
 
                 <div>
-                    <div className='flex justify-between'>
-                        <h1 className='mb-3 font-semibold'>Recent Docotor's</h1>
+                    <div className='flex justify-between my-2'>
+                        <h1 className='mb-3 text-[12px] font-semibold'>Recent Docotor's</h1>
                         <div className='flex justify-center items-center'>
-                            <div className='flex bg-blue-100 rounded-l-full rounded-r-full px-2 py-1 cursor-pointer'>
-                                <h1>show more</h1>
+                            <div className='flex bg-blue-100 rounded-l-full rounded-r-full px-3 py-1 cursor-pointer'>
+                                <div className='flex justify-center items-center'>
+                                    <h1 className='text-[10px]'>show more</h1>
+                                </div>
                                 <div>
-                                    <button className="bg-white rounded-full p-1 shadow hover:bg-gray-100 transition">
+                                    <button className="bg-white rounded-full p-1  hover:bg-gray-100 transition">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="w-3 h-3 text-gray-500"
@@ -294,6 +298,35 @@ const Deshboard = () => {
 
                     </div>
 
+                </div>
+
+                <div className='mt-5'>
+                    <div className='flex justify-between'>
+                        <div className='flex justify-center items-center'>
+                            <h1 className='mb-3 text-[12px] font-semibold'>Recent Appoinment's</h1>
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <div className='flex bg-blue-100 rounded-l-full rounded-r-full px-3 py-1 cursor-pointer'>
+                                <div className='flex justify-center items-center'>
+                                    <h1 className='text-[12px]'>show more</h1>
+                                </div>
+                                <div>
+                                    <button className="bg-white rounded-full p-1  hover:bg-gray-100 transition">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-3 h-3 text-gray-500"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
