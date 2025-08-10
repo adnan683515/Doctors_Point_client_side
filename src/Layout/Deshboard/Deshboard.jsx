@@ -11,18 +11,33 @@ import { FaUserInjured } from "react-icons/fa";
 import { MdTrendingUp, MdTrendingDown } from "react-icons/md";
 import AppointmentChart from './AppointmentChart';
 import MedicinChart from './MedicinChart';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../Hooks/AxiosSequre';
+import ProgressLoaindg from '../../Share/ProgressLoaindg';
 
 const Deshboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const axiosurl = useAxiosSecure()
+    const { data: recentDoctor = [], isLoading } = useQuery({
+        queryKey: 'somedoctors',
+        queryFn: (async () => {
+            const result = await axiosurl.get('/adminForDoctorRecent')
+            return result?.data
+        })
+    })
 
-
+    if (isLoading) {
+        return <div className='flex justify-center items-center min-h-screen'>
+            <ProgressLoaindg></ProgressLoaindg>
+        </div>
+    }
 
     return (
-        <div className="min-h-screen flex bg-[#F2F9FF]">
+        <div className="min-h-screen bg-[#F2F9FF] flex sm:justify-between sm:flex-row flex-col gap-2">
 
             <div
                 className={clsx(
-                    'bg-[#FFFFFF] text-black w-64 space-y-6 px-4 py-6 absolute md:relative  inset-y-0 left-0 transform md:translate-x-0  transition-transform duration-200 ease-in-out z-50',
+                    'bg-[#FFFFFF] text-black   w-64 space-y-6 px-4 py-6 absolute md:relative  inset-y-0 left-0 transform md:translate-x-0  transition-transform duration-200 ease-in-out z-50',
                     sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
                 )}
             >
@@ -63,16 +78,17 @@ const Deshboard = () => {
                             <h1>Medicine</h1>
                         </div>
                     </div>
+                    <Link to={'/AddDoctors'}>
+                        <div className='flex gap-2 text-gray-600 py-2 px-2 rounded-md cursor-pointer'>
+                            <div className='flex justify-center items-center'>
+                                <FaUserPlus size={20} className='' />
+                            </div>
+                            <div className='flex ustify-center items-center'>
+                                <h1>Add Doctor</h1>
+                            </div>
+                        </div></Link>
 
 
-                    <div className='flex gap-2 text-gray-600 py-2 px-2 rounded-md cursor-pointer'>
-                        <div className='flex justify-center items-center'>
-                            <FaUserPlus size={20} className='' />
-                        </div>
-                        <div className='flex ustify-center items-center'>
-                            <h1>Add Doctor</h1>
-                        </div>
-                    </div>
 
 
                     <div className='flex gap-2 text-gray-600 py-2 px-2  rounded-md cursor-pointer'>
@@ -100,7 +116,7 @@ const Deshboard = () => {
             </div>
 
 
-            <div className="flex-1 flex  flex-col w-full ">
+            <div className=" w-[100%]   flex  flex-col  ">
 
                 <div className="bg-white shadow-md px-4 py-3 flex justify-between items-center md:hidden">
                     <h1 className="text-xl font-semibold">Dashboard</h1>
@@ -190,7 +206,97 @@ const Deshboard = () => {
                     </div>
                 </div>
             </div>
+            <div className='sm:w-[25%] w-full mt-6 mr-2 bg-white  rounded-lg px-3 py-1'>
 
+                <div>
+                    <div className='flex justify-between'>
+                        <h1 className='mb-3 font-semibold'>Recent Docotor's</h1>
+                        <div className='flex justify-center items-center'>
+                            <div className='flex bg-blue-100 rounded-l-full rounded-r-full px-2 py-1 cursor-pointer'>
+                                <h1>show more</h1>
+                                <div>
+                                    <button className="bg-white rounded-full p-1 shadow hover:bg-gray-100 transition">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="w-3 h-3 text-gray-500"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        {recentDoctor?.length ? recentDoctor.map((item) => (
+                            <div
+                                key={item?._id}
+                                className="flex items-center justify-between border border-gray-200 rounded-lg p-2 mb-2 bg-white  transition-all duration-200"
+                            >
+
+                                <div className="flex items-center gap-3">
+
+                                    <div className="w-12 h-12 flex-shrink-0">
+                                        <img
+                                            className="w-full h-full object-cover rounded-full border border-gray-300"
+                                            src={item?.image}
+                                            alt={item?.name || "Doctor"}
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <h1 className="text-sm font-semibold text-gray-800">{item?.name}</h1>
+                                        <p className="text-xs text-gray-500">{item?.department}</p>
+
+
+                                    </div>
+                                </div>
+
+
+                                <div className="text-right">
+
+                                    <span className="inline-block bg-green-100 text-green-700 text-[10px] px-1 py-0.5 rounded-full font-medium mb-1">
+                                        {item?.designation}
+                                    </span>
+
+
+                                    <Link to={`/doctorDetails/${item?._id}`}>
+                                        <div className="flex cursor-pointer items-center gap-1">
+                                            <p className="text-xs text-gray-600">
+                                                View
+                                            </p>
+                                            <button className="bg-white rounded-full p-1 shadow hover:bg-gray-100 transition">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="w-3 h-3 text-gray-500"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    strokeWidth={2}
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                    </Link>
+
+                                </div>
+                            </div>
+                        )) : (
+                            <p className="text-center text-gray-500 text-sm">Doctor nai</p>
+                        )}
+
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div >
     );

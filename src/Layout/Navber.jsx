@@ -27,9 +27,7 @@ const Navber = () => {
             {
                 user && <li><NavLink to="/myAppointments" className="text-gray-700 font-medium">My Appointment</NavLink></li>
             }
-            {
-                user && userInfo?.status === 'Admin' && <li><NavLink to="/AddDoctors" className="text-gray-700 font-medium">Add Doctor</NavLink></li>
-            }
+
         </>
     );
 
