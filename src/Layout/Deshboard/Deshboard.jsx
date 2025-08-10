@@ -9,6 +9,8 @@ import { FiLogOut } from "react-icons/fi";
 import { MdHelpCenter } from "react-icons/md";
 import { FaUserInjured } from "react-icons/fa";
 import { MdTrendingUp, MdTrendingDown } from "react-icons/md";
+import AppointmentChart from './AppointmentChart';
+import MedicinChart from './MedicinChart';
 
 const Deshboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -98,7 +100,7 @@ const Deshboard = () => {
             </div>
 
 
-            <div className="flex-1 flex  flex-col w-full">
+            <div className="flex-1 flex  flex-col w-full ">
 
                 <div className="bg-white shadow-md px-4 py-3 flex justify-between items-center md:hidden">
                     <h1 className="text-xl font-semibold">Dashboard</h1>
@@ -111,71 +113,85 @@ const Deshboard = () => {
                 </div>
 
 
-                <div className="sm:p-6 p-2">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                
-                        <div className="border p-4 border-gray-300 rounded-lg bg-white">
-                            <div className="flex gap-2 items-center">
-                                <FaUserInjured className="text-green-500 text-lg" />
-                                <h1 className="text-sm font-semibold">Total Patient</h1>
+                <div className='sm:p-6 p-2 space-y-3.5 sm:space-y-5'>
+                    <div className=" ">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+
+                            <div className="border p-4 border-gray-300 rounded-lg bg-white">
+                                <div className="flex gap-2 items-center">
+                                    <FaUserInjured className="text-green-500 text-lg" />
+                                    <h1 className="text-sm font-semibold">Total Patient</h1>
+                                </div>
+                                <div className="flex justify-between items-center mt-2">
+                                    <div className="sm:text-3xl text-xl  font-semibold">120</div>
+                                    <span className="flex items-center gap-1 bg-green-100 text-black px-2 py-1 rounded-full text-xs">
+                                        <MdTrendingUp className="text-green-600" /> +12%
+                                    </span>
+                                </div>
+                                <h1 className="text-gray-400 text-xs mt-1">Compared to last week</h1>
                             </div>
-                            <div className="flex justify-between items-center mt-2">
-                                <div className="sm:text-3xl text-xl  font-semibold">120</div>
-                                <span className="flex items-center gap-1 bg-green-100 text-black px-2 py-1 rounded-full text-xs">
-                                    <MdTrendingUp className="text-green-600" /> +12%
-                                </span>
+
+
+                            <div className="border p-4 border-gray-300 rounded-lg bg-white">
+                                <div className="flex gap-2 items-center">
+                                    <FaUserMd className="text-blue-500 text-lg" />
+                                    <h1 className="text-sm font-semibold">Total Doctor</h1>
+                                </div>
+                                <div className="flex justify-between items-center mt-2">
+                                    <div className="sm:text-3xl text-xl font-semibold">45</div>
+                                    <span className="flex items-center gap-1 bg-blue-100 text-black px-2 py-1 rounded-full text-xs">
+                                        <MdTrendingUp className="text-blue-600" /> +5%
+                                    </span>
+                                </div>
+                                <h1 className="text-gray-400 text-xs mt-1">Compared to last month</h1>
                             </div>
-                            <h1 className="text-gray-400 text-xs mt-1">Compared to last week</h1>
+
+
+                            <div className="border p-4 border-gray-300 rounded-lg bg-white">
+                                <div className="flex gap-2 items-center">
+                                    <FaCalendarCheck className="text-amber-500 text-lg" />
+                                    <h1 className="text-sm font-semibold">Total Appointment</h1>
+                                </div>
+                                <div className="flex justify-between items-center mt-2">
+                                    <div className="sm:text-3xl text-xl  font-semibold">210</div>
+                                    <span className="flex items-center gap-1 bg-amber-100 text-black px-2 py-1 rounded-full text-xs">
+                                        <MdTrendingDown className="text-red-500" /> -8%
+                                    </span>
+                                </div>
+                                <h1 className="text-gray-400 text-xs mt-1">From previous period</h1>
+                            </div>
+
+
+                            <div className="border p-4 border-gray-300 rounded-lg bg-white">
+                                <div className="flex gap-2 items-center">
+                                    <FaPills className="text-emerald-500 text-lg" />
+                                    <h1 className="text-sm font-semibold">Total Medicine</h1>
+                                </div>
+                                <div className="flex justify-between items-center mt-2">
+                                    <div className="sm:text-3xl text-xl font-semibold">380</div>
+                                    <span className="flex items-center gap-1 bg-emerald-200 text-black px-2 py-1 rounded-full text-xs">
+                                        <MdTrendingUp className="text-green-600" /> +20%
+                                    </span>
+                                </div>
+                                <h1 className="text-gray-400 text-xs mt-1">Updated stock levels</h1>
+                            </div>
                         </div>
 
-
-                        <div className="border p-4 border-gray-300 rounded-lg bg-white">
-                            <div className="flex gap-2 items-center">
-                                <FaUserMd className="text-blue-500 text-lg" />
-                                <h1 className="text-sm font-semibold">Total Doctor</h1>
-                            </div>
-                            <div className="flex justify-between items-center mt-2">
-                                <div className="sm:text-3xl text-xl font-semibold">45</div>
-                                <span className="flex items-center gap-1 bg-blue-100 text-black px-2 py-1 rounded-full text-xs">
-                                    <MdTrendingUp className="text-blue-600" /> +5%
-                                </span>
-                            </div>
-                            <h1 className="text-gray-400 text-xs mt-1">Compared to last month</h1>
-                        </div>
-
-
-                        <div className="border p-4 border-gray-300 rounded-lg bg-white">
-                            <div className="flex gap-2 items-center">
-                                <FaCalendarCheck className="text-amber-500 text-lg" />
-                                <h1 className="text-sm font-semibold">Total Appointment</h1>
-                            </div>
-                            <div className="flex justify-between items-center mt-2">
-                                <div className="sm:text-3xl text-xl  font-semibold">210</div>
-                                <span className="flex items-center gap-1 bg-amber-100 text-black px-2 py-1 rounded-full text-xs">
-                                    <MdTrendingDown className="text-red-500" /> -8%
-                                </span>
-                            </div>
-                            <h1 className="text-gray-400 text-xs mt-1">From previous period</h1>
-                        </div>
-
-
-                        <div className="border p-4 border-gray-300 rounded-lg bg-white">
-                            <div className="flex gap-2 items-center">
-                                <FaPills className="text-emerald-500 text-lg" />
-                                <h1 className="text-sm font-semibold">Total Medicine</h1>
-                            </div>
-                            <div className="flex justify-between items-center mt-2">
-                                <div className="sm:text-3xl text-xl font-semibold">380</div>
-                                <span className="flex items-center gap-1 bg-emerald-200 text-black px-2 py-1 rounded-full text-xs">
-                                    <MdTrendingUp className="text-green-600" /> +20%
-                                </span>
-                            </div>
-                            <h1 className="text-gray-400 text-xs mt-1">Updated stock levels</h1>
-                        </div>
                     </div>
 
+
+                    <div className='flex sm:flex-row gap-5 flex-col justify-between '>
+                        <div className='sm:w-[50%] '>
+                            <AppointmentChart></AppointmentChart>
+                        </div>
+                        <div className='sm:w-[50%]'>
+                            <MedicinChart></MedicinChart>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
         </div >
     );
 };
