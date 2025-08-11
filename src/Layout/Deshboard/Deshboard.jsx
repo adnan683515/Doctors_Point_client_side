@@ -3,7 +3,6 @@ import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 import { GoHome } from "react-icons/go";
 import { Link } from 'react-router';
-import { CiUser } from "react-icons/ci";
 import { FaUserMd, FaCalendarCheck, FaPills, FaUserPlus, FaPlusSquare } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { MdHelpCenter } from "react-icons/md";
@@ -18,6 +17,15 @@ import ProgressLoaindg from '../../Share/ProgressLoaindg';
 const Deshboard = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const axiosurl = useAxiosSecure()
+
+
+    const { data: allValue = {} , isLoading : ValueLoadng } = useQuery({
+        queryKey: 'all-length',
+        queryFn: (async () => {
+            const result = await axiosurl.get('/allValuesCollectionsDeshboard')
+            return result?.data
+        })
+    })
     const { data: recentDoctor = [], isLoading } = useQuery({
         queryKey: 'somedoctors',
         queryFn: (async () => {
@@ -26,7 +34,9 @@ const Deshboard = () => {
         })
     })
 
-    if (isLoading) {
+
+
+    if (isLoading || ValueLoadng) {
         return <div className='flex justify-center items-center min-h-screen'>
             <ProgressLoaindg></ProgressLoaindg>
         </div>
@@ -139,7 +149,7 @@ const Deshboard = () => {
                                     <h1 className="text-sm font-semibold">Total Patient</h1>
                                 </div>
                                 <div className="flex justify-between items-center mt-2">
-                                    <div className="sm:text-3xl text-xl  font-semibold">120</div>
+                                    <div className="sm:text-3xl text-xl  font-semibold"> {allValue?.patient} </div>
                                     <span className="flex items-center gap-1 bg-green-100 text-black px-2 py-1 rounded-full text-xs">
                                         <MdTrendingUp className="text-green-600" /> +12%
                                     </span>
@@ -154,7 +164,7 @@ const Deshboard = () => {
                                     <h1 className="text-sm font-semibold">Total Doctor</h1>
                                 </div>
                                 <div className="flex justify-between items-center mt-2">
-                                    <div className="sm:text-3xl text-xl font-semibold">45</div>
+                                    <div className="sm:text-3xl text-xl font-semibold"> {allValue?.doctor} </div>
                                     <span className="flex items-center gap-1 bg-blue-100 text-black px-2 py-1 rounded-full text-xs">
                                         <MdTrendingUp className="text-blue-600" /> +5%
                                     </span>
@@ -169,7 +179,7 @@ const Deshboard = () => {
                                     <h1 className="text-sm font-semibold">Total Appointment</h1>
                                 </div>
                                 <div className="flex justify-between items-center mt-2">
-                                    <div className="sm:text-3xl text-xl  font-semibold">210</div>
+                                    <div className="sm:text-3xl text-xl  font-semibold">  {allValue?.appointment} </div>
                                     <span className="flex items-center gap-1 bg-amber-100 text-black px-2 py-1 rounded-full text-xs">
                                         <MdTrendingDown className="text-red-500" /> -8%
                                     </span>

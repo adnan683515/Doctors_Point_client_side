@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router';
 
 const stripePromise = loadStripe(import.meta.env.VITE_pubicKey);
 
-const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
+const CheckoutForm = ({ days, user, doctorId, visiFee ,close ,dept }) => {
 
 
     const stripe = useStripe();
@@ -46,7 +46,7 @@ const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
                 const date = now.toLocaleDateString();
                 const time = now.toLocaleTimeString();
                 const email = user?.email
-                const appointmentAndpaymentInfo = { date, time, email, doctorId, ...data, tranjectionId: tranId, visiFee, status: 'pending' }
+                const appointmentAndpaymentInfo = { dept, date, time, email, doctorId, ...data, tranjectionId: tranId, visiFee, status: 'pending' }
 
 
                 const appointMentResult = await axiosSecure.post('/appointments', appointmentAndpaymentInfo)
@@ -147,7 +147,7 @@ const CheckoutForm = ({ days, user, doctorId, visiFee ,close }) => {
     );
 };
 
-const VisaCardModal = ({ isOpen, close, days, user, doctorId, visiFee }) => {
+const VisaCardModal = ({ isOpen, close, days, user, doctorId, visiFee ,dept }) => {
 
 
 
@@ -168,7 +168,7 @@ const VisaCardModal = ({ isOpen, close, days, user, doctorId, visiFee }) => {
                         </div>
 
                         <Elements stripe={stripePromise}>
-                            <CheckoutForm close={close} visiFee={visiFee} user={user} days={days} doctorId={doctorId} />
+                            <CheckoutForm dept={dept} close={close} visiFee={visiFee} user={user} days={days} doctorId={doctorId} />
                         </Elements>
 
                         <button className="bg-blue-600 w-full block sm:hidden px-4 py-1 text-white rounded-sm" onClick={close}>

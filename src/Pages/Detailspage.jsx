@@ -182,7 +182,7 @@ const Detailspage = () => {
             </div>
             {
                 isOpen && <div data-aos="zoom-in">
-                    <VisaCardModal visiFee={visiFee} doctorId={doctorDetails?._id} user={user} days={doctorDetails?.visitDays} close={close} isOpen={isOpen}></VisaCardModal>
+                    <VisaCardModal visiFee={visiFee} dept={doctorDetails?.department} doctorId={doctorDetails?._id} user={user} days={doctorDetails?.visitDays} close={close} isOpen={isOpen}></VisaCardModal>
                 </div>
             }
 

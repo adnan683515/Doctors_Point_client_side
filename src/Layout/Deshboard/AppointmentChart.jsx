@@ -1,3 +1,4 @@
+import {  useQuery } from '@tanstack/react-query';
 import React from 'react';
 import {
     BarChart,
@@ -9,18 +10,27 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
-
-const data = [
-    { department: 'Cardiology', appointments: 25 },
-    { department: 'Neurology', appointments: 18 },
-    { department: 'Orthopedics', appointments: 12 },
-    { department: 'Pediatrics', appointments: 20 },
-    { department: 'Dermatology', appointments: 15 },
-    { department: 'ENT', appointments: 14 },
-    { department: 'Radiology', appointments: 9 },
-];
+import useAxiosSecure from '../../Hooks/AxiosSequre';
+import ProgressLoaindg from '../../Share/ProgressLoaindg';
 
 const AppointmentChart = () => {
+
+    const axiosUrl = useAxiosSecure()
+
+    const { data , isLoading } = useQuery({
+        queryKey: 'alldeptapp',
+        queryFn: (async () => {
+            const result = await axiosUrl.get('/appointments-by-department')
+            return result?.data
+        })
+    })
+
+    if(isLoading){
+        return <div className='flex justify-center items-center'>
+            <ProgressLoaindg></ProgressLoaindg>
+        </div>
+    }
+
     return (
         <div className="w-full h-[40vh] sm:h-[50vh] bg-white rounded-lg  p-3 sm:p-4">
             <h2 className="text-sm sm:text-lg font-semibold mb-2 text-gray-700 text-center sm:text-left">
@@ -40,7 +50,7 @@ const AppointmentChart = () => {
                         dataKey="department"
                         tick={{ fontSize: 8 }}
                         interval={0}
-                        angle={-30} 
+                        angle={-30}
                         textAnchor="end"
                         height={40}
                     />
@@ -51,7 +61,7 @@ const AppointmentChart = () => {
                         dataKey="appointments"
                         fill="#3B82F6"
                         radius={[6, 6, 0, 0]}
-                        barSize={20} 
+                        barSize={20}
                     />
                 </BarChart>
             </ResponsiveContainer>
