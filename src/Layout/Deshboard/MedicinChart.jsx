@@ -43,7 +43,7 @@ const CustomizedAxisTick = ({ x, y, payload }) => (
 
 const MedicinChart = () => {
     return (
-        <div className="w-full h-[50vh] sm:h-[50vh] mx-auto bg-white p-2 rounded-lg">
+        <div className="w-full h-[70vh] sm:h-[50vh] mx-auto bg-white p-2 rounded-lg">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="sm:text-xl font-semibold text-gray-800">
                     Medicine Sales - Month Wise (2021)

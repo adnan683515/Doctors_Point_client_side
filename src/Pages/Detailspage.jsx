@@ -20,10 +20,8 @@ import AxiosHook from './../Hooks/AxiosHook';
 
 
 const Detailspage = () => {
-
     const { id } = useParams()
     let [isOpen, setIsOpen] = useState(false)
-    const axiosHook = AxiosHook()
     const [userInfo, roleLoading] = RoleHooks()
     const axiosSequere = useAxiosSecure()
     const { user, loading } = AuthHook()
@@ -66,10 +64,10 @@ const Detailspage = () => {
         }
     }
 
-    const paymentApiFunction = async () => {
-        const { data } = await axiosHook.get(`/init/${doctorDetails?._id}/${user?.email}`);
-        window.location.href = data.url; // manually redirect here
-    };
+    // const paymentApiFunction = async () => {
+    //     const { data } = await axiosHook.get(`/init/${doctorDetails?._id}/${user?.email}`);
+    //     window.location.href = data.url; // manually redirect here
+    // };
 
     if (isLoading || roleLoading || loading) {
         return <div className='min-h-screen my-30'>
@@ -161,11 +159,7 @@ const Detailspage = () => {
                                 </button>
 
 
-                                {/* {
-                                    doctorDetails?.visitDays.includes(dayName) && userInfo?.status === 'patient' && <button onClick={paymentApiFunction} className="bg-[#007F5F] text-white text-sm px-4 py-2 cursor-pointer rounded-full font-medium hover:scale-95 duration-700 transition-all  w-full sm:w-auto">
-                                        Payment
-                                    </button>
-                                } */}
+
 
 
                             </div>
