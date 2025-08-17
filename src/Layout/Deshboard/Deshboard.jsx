@@ -24,6 +24,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { blue } from '@mui/material/colors';
 import DisplayAppointmentDesh from './DisplayAppointmentDesh';
+import DeshBoardLayout from './DeshBoardLayout';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -87,99 +88,15 @@ const Deshboard = () => {
     return (
         <div className="min-h-screen bg-[#F2F9FF] flex sm:justify-between sm:flex-row flex-col gap-2">
 
-            <div
-                className={clsx(
-                    'bg-[#FFFFFF] text-black   w-64 space-y-6 px-4 py-6 absolute md:relative  inset-y-0 left-0 transform md:translate-x-0  transition-transform duration-200 ease-in-out z-50',
-                    sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-                )}
-            >
-                <Link to={'/'}>
-                    <h2 className="text-xl font-bold mb-6">Doctors Point</h2>
-                </Link>
-
-                <div className=''>
-                    <div className='flex gap-2 bg-green-100 py-2 px-2'>
-                        <div className='flex justify-center items-center'> <GoHome size={20}></GoHome> </div>
-                        <div className='flex  font-semibold text-green-700 justify-center items-center'> <h1>Deshboard</h1> </div>
-                    </div>
-                    <div className='flex gap-2 text-gray-600  py-2 px-2  rounded-md cursor-pointer'>
-                        <div className='flex justify-center items-center'>
-                            <FaUserMd size={20} className='' />
-                        </div>
-                        <div className='flex justify-center items-center'>
-                            <h1>Doctors</h1>
-                        </div>
-                    </div>
-
-
-                    <div className='flex gap-2 py-2 text-gray-600 px-2 rounded-md cursor-pointer'>
-                        <div className='flex justify-center items-center'>
-                            <FaCalendarCheck size={20} className='' />
-                        </div>
-                        <div className='flex  justify-center items-center'>
-                            <h1>Appointment</h1>
-                        </div>
-                    </div>
-
-
-                    <div className='flex gap-2 text-gray-600 py-2 px-2 rounded-md cursor-pointer'>
-                        <div className='flex justify-center items-center'>
-                            <FaPills size={20} className='' />
-                        </div>
-                        <div className='flex justify-center items-center'>
-                            <h1>Medicine</h1>
-                        </div>
-                    </div>
-                    <Link to={'/AddDoctors'}>
-                        <div className='flex gap-2 text-gray-600 py-2 px-2 rounded-md cursor-pointer'>
-                            <div className='flex justify-center items-center'>
-                                <FaUserPlus size={20} className='' />
-                            </div>
-                            <div className='flex ustify-center items-center'>
-                                <h1>Add Doctor</h1>
-                            </div>
-                        </div></Link>
 
 
 
-
-                    <div className='flex gap-2 text-gray-600 py-2 px-2  rounded-md cursor-pointer'>
-                        <div className='flex justify-center items-center'>
-                            <FaPlusSquare size={20} className='' />
-                        </div>
-                        <div className='flex  justify-center items-center'>
-                            <h1>Add Medicine</h1>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div className="absolute bottom-8 text-gray-600 left-4 flex items-center gap-2 cursor-pointer">
-                    <MdHelpCenter size={20}></MdHelpCenter>
-                    <span>Help Center</span>
-                </div>
-
-                <div className="absolute text-gray-600 bottom-4 left-4 flex items-center gap-2 cursor-pointer">
-                    <FiLogOut size={20} />
-                    <span>Logout</span>
-                </div>
-
-            </div>
+            <DeshBoardLayout></DeshBoardLayout>
 
 
             <div className=' w-[100%]  '>
                 <div className="  flex  flex-col  ">
 
-                    <div className="bg-white shadow-md px-4 py-3 flex justify-between items-center md:hidden">
-                        <h1 className="text-xl font-semibold">Dashboard</h1>
-                        <button
-                            onClick={() => setSidebarOpen(!sidebarOpen)}
-                            className="text-gray-700 focus:outline-none"
-                        >
-                            {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
-                    </div>
 
 
                     <div className='sm:p-6 p-2 space-y-3.5 sm:space-y-5'>
@@ -265,7 +182,7 @@ const Deshboard = () => {
                             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                                 <TableHead>
                                     <TableRow>
-                                      
+
                                         <StyledTableCell >Patient Name</StyledTableCell>
 
                                         <StyledTableCell align="center">Date & Time</StyledTableCell>
@@ -276,7 +193,7 @@ const Deshboard = () => {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {someAppoinemnts.map((row, index) => <DisplayAppointmentDesh row={row} index={index}></DisplayAppointmentDesh> )}
+                                    {someAppoinemnts.map((row, index) => <DisplayAppointmentDesh row={row} index={index}></DisplayAppointmentDesh>)}
                                 </TableBody>
                             </Table>
                         </TableContainer>
@@ -393,7 +310,7 @@ const Deshboard = () => {
                 <div className='mt-5'>
                     <div className='flex justify-between'>
                         <div className='flex justify-center items-center'>
-                            <h1 className='mb-3 text-[12px] font-semibold'>Recent Appoinment's</h1>
+                            <h1 className='mb-3 text-[12px] font-semibold'>Recent Added Medicin</h1>
                         </div>
                         <div className='flex justify-center items-center'>
                             <div className='flex bg-blue-100 rounded-l-full rounded-r-full px-3 py-1 cursor-pointer'>

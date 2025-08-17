@@ -15,6 +15,7 @@ import PrivetRouter from "./PrivetRouter";
 import Detailspage from "../Pages/Detailspage";
 import MyAppointments from "../Pages/MyAppointments";
 import Deshboard from "../Layout/Deshboard/Deshboard";
+import DeshBoardLayout from "../Layout/Deshboard/DeshBoardLayout";
 
 
 export const router = createBrowserRouter([
@@ -73,10 +74,17 @@ export const router = createBrowserRouter([
     }, {
         path: "/*",
         Component: ErrorPage
-    },{
+    }, {
         path: "/dashboard",
-        element : <PrivetRouter>
+        element: <PrivetRouter>
             <Deshboard></Deshboard>
+        </PrivetRouter>,
+
+    },
+    {
+        path: '/layoutDeshBoard',
+        element: <PrivetRouter>
+            <DeshBoardLayout></DeshBoardLayout>
         </PrivetRouter>
     }
 ])

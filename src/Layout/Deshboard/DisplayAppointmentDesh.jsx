@@ -27,11 +27,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const DisplayAppointmentDesh = ({ row, index }) => {
 
-    const axiosUrl  = useAxiosSecure()
-    const {data : userDetails = {}} = useQuery({
-        queryKey : ['user',row?.email],
-        queryFn  : (async ()=>{
+    const axiosUrl = useAxiosSecure()
+    const { data: userDetails = {} } = useQuery({
+        queryKey: ['user', row?.email],
+        queryFn: (async () => {
             const result = await axiosUrl.get(`/singleUser/${row?.email}`)
+            return result?.data
+        })
+    })
+
+    const { data: singleDoctor = {} } = useQuery({
+        queryKey: ['doctor', row?._id],
+        queryFn: (async () => {
+            const result = await axiosUrl.get(`/singleDoctor/${row?.doctorId}`)
             return result?.data
         })
     })
@@ -39,13 +47,18 @@ const DisplayAppointmentDesh = ({ row, index }) => {
 
     return (
         <StyledTableRow key={index}>
-    
+
             <StyledTableCell component="th" scope="row">
                 {userDetails?.name}
             </StyledTableCell>
             <StyledTableCell align="right">{row?.date} &amp; {row?.time}</StyledTableCell>
-            <StyledTableCell align="right">{row?.status}</StyledTableCell>
-            <StyledTableCell align="right">{row?.carbs}</StyledTableCell>
+            <StyledTableCell align="right">
+
+                <span className={` px-2 py-1 rounded-l-full rounded-r-full ${row?.status === 'pending' ? 'bg-amber-300 text-black' : `${row?.status == 'Confirmed' ? 'bg-[#80D8C3]' : `${row?.status === 'Ongoing' ? 'bg-emerald-400' : ''}`}`} `}>{row?.status}</span>
+
+
+            </StyledTableCell>
+            <StyledTableCell align="right"> {singleDoctor && singleDoctor?.name} </StyledTableCell>
             <StyledTableCell align="right">
                 View Delete
             </StyledTableCell>
