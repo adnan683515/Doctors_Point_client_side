@@ -24,7 +24,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { blue } from '@mui/material/colors';
 import DisplayAppointmentDesh from './DisplayAppointmentDesh';
-import DeshBoardLayout from './DeshBoardLayout';
+
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -51,7 +51,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const Deshboard = () => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+ 
     const axiosurl = useAxiosSecure()
 
 
@@ -88,10 +88,6 @@ const Deshboard = () => {
     return (
         <div className="min-h-screen bg-[#F2F9FF] flex sm:justify-between sm:flex-row flex-col gap-2">
 
-
-
-
-            <DeshBoardLayout></DeshBoardLayout>
 
 
             <div className=' w-[100%]  '>
