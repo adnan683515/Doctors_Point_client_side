@@ -92,7 +92,7 @@ const AddDoctor = () => {
             </div>
             <div className="bg-[#EFFAF7] min-h-screen flex justify-center items-center py-10 px-4  ">
 
-                <form data-aos="flip-left" onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row w-full relative  max-w-7xl rounded-2xl overflow-hidden shadow-lg">
+                <form data-aos="flip-left" onSubmit={handleSubmit(onSubmit)} className="flex flex-col md:flex-row w-full relative  max-w-7xl rounded-2xl overflow-hidden ">
 
 
                     <div data-aos="zoom-in-right" className="w-full md:w-[30%] bg-[#007F5F] p-6 flex flex-col items-start gap-4 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none">

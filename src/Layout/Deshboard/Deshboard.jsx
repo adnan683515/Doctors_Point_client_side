@@ -254,7 +254,7 @@ const Deshboard = () => {
                                     </div>
 
                                     <div>
-                                        <h1 className="text-[11px] font-semibold text-gray-800">{item?.name}</h1>
+                                        <h1 className="text-[11px] font-semibold text-gray-800">{item?.name.slice(0,15)}..</h1>
                                         <p className="text-xs text-gray-500">{item?.department}</p>
 
 

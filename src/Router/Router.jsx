@@ -15,6 +15,8 @@ import PrivetRouter from "./PrivetRouter";
 import Detailspage from "../Pages/Detailspage";
 import MyAppointments from "../Pages/MyAppointments";
 import DeshboardLayOutOptimaize from "../Layout/Deshboard/DeshboardLayOutOptimaize";
+import Deshboard from "../Layout/Deshboard/Deshboard";
+import AddMedicin from "../Layout/Deshboard/AddMedicin";
 
 
 export const router = createBrowserRouter([
@@ -33,11 +35,6 @@ export const router = createBrowserRouter([
             {
                 path: "/signup",
                 Component: SignUp
-            }, {
-                path: "/AddDoctors",
-                element: <PrivetRouter>
-                    <AddDoctor></AddDoctor>
-                </PrivetRouter>
             }, {
                 path: "/aboutUs",
                 Component: AboutUs
@@ -78,6 +75,23 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <PrivetRouter>
             <DeshboardLayOutOptimaize></DeshboardLayOutOptimaize>
-        </PrivetRouter>
+        </PrivetRouter>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Deshboard></Deshboard>
+            }, {
+                path: "/dashboard/AddDoctors",
+                element: <PrivetRouter>
+                    <AddDoctor></AddDoctor>
+                </PrivetRouter>
+            },
+            {
+                path: "/dashboard/Addmedicin",
+                element: <PrivetRouter>
+                    <AddMedicin></AddMedicin>
+                </PrivetRouter>
+            },
+        ]
     }
 ])
