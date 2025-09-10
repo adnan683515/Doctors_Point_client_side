@@ -20,7 +20,7 @@ const DeshboardLayOutOptimaize = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className="flex sm:h-screen bg-gray-100 overflow-hidden">
+        <div className="flex sm:h-screen bg-gray-100overflow-hidden">
 
             <div
                 className={clsx(
@@ -93,7 +93,7 @@ const DeshboardLayOutOptimaize = () => {
 
                 <div className="mt-16 sm:mt-0  ">
 
-                    {/* <Deshboard></Deshboard> */}
+
                     <Outlet></Outlet>
 
                 </div>
