@@ -1,7 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import AuthHook from "../../Hooks/AuthHook";
+import ProgressLoaindg from "../../Share/ProgressLoaindg";
 
 const AddMedicine = () => {
+
+    const { user, loading } = AuthHook()
+
+
     const {
         register,
         handleSubmit,
@@ -10,13 +16,20 @@ const AddMedicine = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        console.log("Medicine Data:", data);
-        reset();
+
+        const medicinInfo = {email : user?.email , ...data}
+        console.log(medicinInfo)
+    
     };
 
+    if (loading || !user) {
+        return <div className="min-h-screen flex justify-center items-center">
+            <ProgressLoaindg></ProgressLoaindg>
+        </div>
+    }
     return (
         <div className="grid relative overflow-hidden grid-cols-1 md:grid-cols-2 min-h-screen">
-          
+
             <div data-aos="zoom-in-right" className="bg-[#007F5F] text-white flex flex-col justify-center items-center p-10 my-6 rounded-lg  ">
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">
                     Medicine Management
@@ -31,7 +44,7 @@ const AddMedicine = () => {
                 </p>
             </div>
 
-            
+
             <div data-aos="zoom-out" className="bg-green-50 flex justify-center items-center p-6">
                 <div className="w-full md:w-[90%] bg-white rounded-2xl p-6">
                     <h2 className="text-3xl font-bold mb-2 text-center text-[#007F5F]">
@@ -143,7 +156,7 @@ const AddMedicine = () => {
                             {errors.expiry && <p className="text-red-500 text-sm mt-1">{errors.expiry.message}</p>}
                         </div>
 
-                      
+
                         <div className="md:col-span-2">
                             <label className="block mb-1 font-medium text-gray-700">Description</label>
                             <textarea
